@@ -1,0 +1,263 @@
+*{
+    list-style: none;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 20px;
+    margin: 0;
+    box-sizing: border-box;
+    
+
+}
+body{
+    background-image: url(assets/notebook.jpg);
+    background-size: 25%;
+    
+}
+.header{
+    background-color: rgb(247, 217, 120)
+}
+.main{
+    padding: 20px 0px;
+    height: auto;
+}
+.h1{
+    font-size: 80px;
+    font-weight: 900;
+    margin-bottom: 50px;
+    margin-left: 10px;
+    color: white;
+    font-family: 'Roboto', sans-serif;
+    text-shadow: 7px 7px 0px rgba(0, 0, 0, 0.795);
+}
+.h2{
+    font-size: 40px;
+    color: rgb(0, 0, 0);
+    text-shadow: 3px 3px 7px rgba(0, 0, 0, 0.664)
+    
+}
+.h2-size{
+    font-size: 30px;
+}
+.nav__menu, .nav__menu-color{
+    width: 140px;
+    height: 60px;
+    display: inline-block;
+    text-align: center;
+    margin: 30px 0px;
+    font-size: 20px;
+    padding: 17px;
+    border: 1px solid black;
+    border-radius: 10px;
+    box-shadow: 5px 5px black;
+}
+.nav__menu{
+    background-color: rgb(162, 173, 10);
+}
+.nav__menu:hover{
+    background-color: gold;
+}
+.nav__menu-color{
+    margin-left: 60px;
+    background-color: rgb(192, 65, 255)
+}
+
+/* primer article de diario, notas */
+
+.p{
+    font-size: 15px;
+    padding: 15px;
+    width: auto;
+    border: 1px solid black;
+    border-radius: 20px;
+    margin: 10px;
+    background-color: rgba(176, 196, 222, 0.5)
+}
+.article__diary{
+    position: relative;
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: 20px;
+    width: 87%;
+    height: auto;
+    padding: 30px;
+    border: 10px solid rgba(247, 162, 51, 0.664);
+    border-radius: 20px;
+    max-width: 100%;
+    
+}
+.diary__section__notas,
+.diary__section__destacados{
+    margin-top: 10px;
+    margin-left: 10px;
+    display: inline-block;
+    padding: 10px;
+    
+    
+}
+.diary__section__notas{
+    width: 60%;
+}
+/* cntenedor de el diario */
+.article__diary-form{
+    display: flex
+}
+/* textarea */
+.diary__section-textarea{
+    background-color: rgba(255, 255, 255, 0.5);
+    border: 5px solid rgb(209, 67, 1);
+    border-radius: 20px;
+    padding: 5px
+}
+
+.diary-bottons-agregar{
+    width: 100px;
+    height: auto;
+    padding: 5px;
+    border: 1px solid black;
+    border-radius: 5px;
+    box-shadow: 5px 5px black;
+    margin: 5px
+
+}
+.diary-bottons-agregar:hover{
+    background-color: gold;
+}
+.diary-bottons-agregar:hover {
+    background-color: gold;
+  }
+/* botones */
+.show{
+    display: none
+}
+.boton_an{
+    padding: 5px;
+    border: 1px solid black;
+    border-radius: 5px;
+    box-shadow: 5px 5px black;
+    height: 51px;
+    margin: 15px
+}
+.bottons-agregar-add{
+    background-color: rgba(0, 191, 255, 0.5);
+    height: 51px;
+    
+}
+.bottons-agregar-one{
+    display:block;
+    background-color:rgba(194, 194, 13, 0.5)
+}
+.bottons-agregar-one:hover{
+    background-color: rgba(255, 215, 0, 0.5);
+}
+.bottons-agregar-two{
+    background-color:rgba(104, 210, 218, 0.5)
+}
+.bottons-agregar-dos{
+    background-color:rgba(255, 86, 80, 0.5)
+}
+.bottons-agregar-three{
+    background-color:rgba(201, 204, 49, 0.5)
+}
+.bottons-mostrar{
+    background-color:rgba(125, 191, 253, 0.5)
+}
+
+/* tabla */
+.tabla{
+    margin-bottom: 20px
+}
+.date-span{
+    display: block;
+    text-decoration: underline;
+    font-size: 15px;
+    margin-top: 10px
+}
+.td{
+    background-color: rgba(255, 255, 255, 0.7);
+    border: 5px solid rgb(1, 88, 250);
+    padding: 10px;
+    width: 600px;
+    border-radius: 12px;
+    
+}
+
+/* figuras */
+.circulo{
+    position: absolute;
+    max-width: 100%;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    box-shadow: 8px 8px 0px black
+}
+.circulo-uno{
+    background-color: rgb(167, 55, 214);
+    bottom: -60px;
+    left: -15px;
+}
+.circulo-dos{
+    background-color: rgb(255, 143, 15);
+    top: 300px;
+    left: -50px;
+}
+.circulo-tres{
+    background-color: rgb(255, 15, 235);
+    top: -40px;
+    left: 60%;
+}
+.triangulo{
+    position: absolute;
+    bottom: -100px;
+    right: -100px;
+    max-width: 100%;
+    width: 180px;
+    height: 180px;
+    background-color: transparent;
+    border-top: 180px solid rgb(36, 201, 187);
+    border-right: 180px solid transparent;
+    box-shadow: -8px -8px 0px black;
+}
+/* primer article de diario, notas */
+.diary__section__destacados{
+    display: inline-block;
+}
+.enlace{
+    width: 50px;
+    height: 50px;
+    border-radius: 40%;
+    border: 1px solid black;
+    background-color: cyan;
+    padding: 10px;
+    margin: 10px;
+    text-align: center;
+}
+.enlace_select{
+    width: 70px;
+    height: 70px;
+    background-color: rgb(5, 202, 202);
+}
+.item_box{
+    display: inline-block
+}
+
+/* estilos de el cuadro de validacion */
+.error_hidden{
+    display: none
+}
+.error{
+    position: absolute;
+    height: 160px;
+    width: 160px;
+    font-size: 18px;
+    background-image: url(assets/nota.png);
+    background-size: contain;
+    padding: 30px;
+    top: -30px;
+    left: 30%;
+    transform: rotate(-4deg);
+
+}
+.ubication_eliminar{
+    top: 300px;
+    left: 30%;
+}
+
