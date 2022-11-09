@@ -37,7 +37,7 @@
         </div>
         <div class="error error_hidden" id="error">
         </div>
-            <h1 class="h1">Diario:</h1>
+            <h1 class="h1">Diario Notas:</h1>
             <div class="container_diario">
             <form class="article__diary-form" name="myform" action="datos.php" method="POST" id="form">
                 <section class="diary__section__notas">
