@@ -22,7 +22,7 @@
 //la direccion de la base de datos
 $direccion_bd='localhost';
 //nombre de base de datos
-$nombre_bd='My_Diary';
+$nombre_bd='mydb';
 $nombre_user='root';
 $password_user='admin';
 // manejo de errores
@@ -45,4 +45,16 @@ $consulta = "SELECT * FROM diario_tabla";
 //obtengo la consulta
 $consulta_destacados = "SELECT * FROM destacados";
 $resultado_destacad = mysqli_query($conexion,$consulta_destacados);
+
+// conexion pdo
+try {
+  $conn = new PDO("mysql:host=$direccion_bd;dbname=$nombre_bd;", $nombre_user, $password_user);
+} catch (PDOException $e) {
+  //die acaba con el proceso
+  die('Connection Failed: ' . $e->getMessage());
+}
+$conn->setAttribute(
+	PDO::ATTR_ERRMODE,
+	PDO::ERRMODE_EXCEPTION
+    );
 ?>
