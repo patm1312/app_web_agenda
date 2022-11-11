@@ -1,4 +1,5 @@
 <?php
+session_start();
 include('conexion.php');
 //recojo los datos
 $texto = $_POST['texto'];
@@ -22,27 +23,33 @@ if(isset($_POST['agregar'])){
     echo "existe agregar";
     //si el campo  esta vacio
     if(empty($_POST['texto'])){
-        echo "<p>Por favor introduce tu nota</p>";
-        echo "$texto<br>";
+        
     }else{
-        //cuento el numero de filas que tiene la base de datos para sumar y agregar el nuevo id a la base de datos.
+        if(isset($_SESSION['user_id'])){
+            //cuento el numero de filas que tiene la base de datos para sumar y agregar el nuevo id a la base de datos.
         try {
-            $filas = mysqli_num_rows($resultado);
+        $consulta = "SELECT * FROM Nota";
+        $resultado = mysqli_query($conexion, $consulta);
+        $filas = mysqli_num_rows($resultado);
         $filas++;
+        $favorito = 0;
         echo $filas;
         echo $hoy_prueba;
         echo $texto;
         //inserto nueva consulta
-        $sql .= "INSERT INTO diario_tabla ";
-        $sql .= "VALUES ('". $filas . "', ";
-        $sql .= "'". $hoy_prueba . "','". $texto . "');";
-        echo $sql;
+        $sql .= "INSERT INTO Nota (Nota, Fecha, Usuario_idUsuario, Favorito)";
+        $sql .= "VALUES ('". $texto . "', ";
+        $sql .= "'". $hoy_prueba . "','". $_SESSION['user_id'] . "', '". $favorito . "');";
         mysqli_query($conexion, $sql);
         } catch (\Throwable $th) {
             echo $th;
             echo "error de la conexion";
         }
+    }else{
+        header('Location:index.php?seccion=login&sesion=false');
     }
+        }
+        
 }
 if(!isset($_POST['eliminar'])){
 }else{

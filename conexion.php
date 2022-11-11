@@ -23,6 +23,7 @@
 $direccion_bd='localhost';
 //nombre de base de datos
 $nombre_bd='mydb';
+$name_bd='My_Diary';
 $nombre_user='root';
 $password_user='admin';
 // manejo de errores
@@ -30,15 +31,16 @@ if(mysqli_connect_errno()){
   echo "fallo al conectar al host";
 }
 $conexion= new mysqli ($direccion_bd, $nombre_user, $password_user, $nombre_bd);
-if(!conexion){
-    echo "fallo";
-    error_log('Connection error: ' . mysqli_connect_errno());
-    exit;
-}
+// mysqli_select_db($conexion, $name_bd) or die("base de datros no se encuentra");
+// if(!$conexion){
+//     echo "fallo";
+//     echo error_log('Connection error: ' . mysqli_connect_errno());
+//     exit;
+// }
 echo mysqli_error($conexion);
  //ejecuto la consulta
-$consulta = "SELECT * FROM diario_tabla";
- $resultado = mysqli_query($conexion, $consulta);
+// $consulta = "SELECT * FROM diario_tabla";
+// $resultado = mysqli_query($conexion, $consulta);
 
   //incluyo la conexxion
 

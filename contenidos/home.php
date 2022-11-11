@@ -28,21 +28,28 @@
                                 if(!isset($_SESSION['item'])){$_SESSION['item'] = 1;}else{$_SESSION['item']=$_SESSION['item'];}
                                 //el valor de la pagina la almaceno en una variable
                                 $pagina = $_SESSION['item'];
-                                
+                                if(isset($_SESSION['user_id'])){
                                     //  require_once 'conexion.php';
                                     //  //ejecuto la consulta
-                                    //  $consulta = "SELECT * FROM diario_tabla";
-                                    //  $resultado = mysqli_query($conexion, $consulta);
+                                    $consulta = "SELECT * FROM Nota";
+                                    $resultado = mysqli_query($conexion, $consulta);
                                      $registros_filas = mysqli_num_rows($resultado);
+
                                      //el numero de registros que quiero que me muestre en cada pagina
                                      $num_reg = 3;
                                      //desde que numero de registro quiero empezar aconsultar
                                      $num_pagina = (($pagina-1 )*$num_reg);
                                      //realizo la consulta y la guardo 
-                                     $consulta_limitada = "SELECT * FROM diario_tabla LIMIT $num_pagina,$num_reg";
+                                     $id_usuario = htmlentities($_SESSION['user_id'],ENT_QUOTES,'utf-8');
+                                    //  $sql="SELECT * FROM users WHERE Patrocinador = {$numCedula}";
+                                $consulta_limitada = "SELECT * FROM Nota WHERE Usuario_idUsuario = {$id_usuario} LIMIT $num_pagina,$num_reg";
+                                echo $consulta_limitada;
+                                    //  $consulta_limitada .= "WHERE Usuario_idUsuario = $_SESSION['user_id']";
                                 
                                 //ejecuto la consulta
                                 $resultado_limit = mysqli_query($conexion, $consulta_limitada);
+                                }
+                                    
                                 //imprimoi la consulta en la tabla                             
                                 echo "<div id='box-table' class='box-table'>";
                                 //cuantas filas tiene la consulta limitada
@@ -57,8 +64,8 @@
                                 }else{
                                     while($fila=mysqli_fetch_row($resultado_limit)){
                                            $id = $fila[0];
-                                           $fecha = $fila[1];
-                                           $nota = $fila[2];
+                                           $fecha = $fila[2];
+                                           $nota = $fila[1];
                                            $date = date_create($fecha);
                                            $new_hoy = date_format($date, "F j, Y, g:i a");
                                               echo "<tr class='tr'>";
