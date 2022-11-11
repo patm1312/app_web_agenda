@@ -39,9 +39,8 @@
                                      $num_reg = 3;
                                      //desde que numero de registro quiero empezar aconsultar
                                      $num_pagina = (($pagina-1 )*$num_reg);
-                                     //realizo la consulta y la guardo 
+                                     //realizo la consulta y la guardo, Esto cambiara simbolos como <>"' a entidades HTML, el resultado de esos 4 simbolos seria el siguiente: &lt;&gt;&quot;&apos; asi que de esta forma, el atacante tendra menos posibilidades de hacerse con tu informacion :) 
                                      $id_usuario = htmlentities($_SESSION['user_id'],ENT_QUOTES,'utf-8');
-                                    //  $sql="SELECT * FROM users WHERE Patrocinador = {$numCedula}";
                                 $consulta_limitada = "SELECT * FROM Nota WHERE Usuario_idUsuario = {$id_usuario} LIMIT $num_pagina,$num_reg";
                                 echo $consulta_limitada;
                                     //  $consulta_limitada .= "WHERE Usuario_idUsuario = $_SESSION['user_id']";
