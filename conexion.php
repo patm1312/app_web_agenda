@@ -25,7 +25,7 @@ $direccion_bd='localhost';
 $nombre_bd='mydb';
 $name_bd='My_Diary';
 $nombre_user='root';
-$password_user='admin';
+$password_user='';
 // manejo de errores
 if(mysqli_connect_errno()){
   echo "fallo al conectar al host";

@@ -4,6 +4,10 @@ session_start();
     if (isset($_SESSION['user_id'])) {
         header('Location:index.php?seccion=home');
       }
+      if (isset($_GET['sesion'])) {
+        $message = "Por favor inicia sesion para agregar notas";
+        echo "<p> $message;</p>";
+      }
 ?>
 <h1>Login</h1>
   <span>or <a href="index.php?seccion=signup">SignUp</a></span>
@@ -24,6 +28,7 @@ session_start();
     header("Location: index.php?seccion=home");
   } else {
     $message = 'Sorry, those credentials do not match';
+    echo "<p> $message;</p>";
   }
 } catch (PDOException $error) {
     $message = 'Sorry there must have been an issue creating your account';

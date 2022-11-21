@@ -1,5 +1,6 @@
 <?php
 session_start();
+$messahe = "";
 include('conexion.php');
 //recojo los datos
 $texto = $_POST['texto'];
@@ -11,9 +12,9 @@ $hoy_prueba = date("Y-m-d H:i:s");
 //incluyo la conexxion
 //si le di clikc a un boton de items de paginacion
 if(isset($_POST['items'])){
-    session_start();
     //creo una sesion para alacenar la variable del numero de pagina
     $_SESSION['item'] = $_POST['items'];
+    header("Location: index.php?seccion=home");
 }else{
     echo "";
 }
@@ -28,19 +29,27 @@ if(isset($_POST['agregar'])){
         if(isset($_SESSION['user_id'])){
             //cuento el numero de filas que tiene la base de datos para sumar y agregar el nuevo id a la base de datos.
         try {
-        $consulta = "SELECT * FROM Nota";
-        $resultado = mysqli_query($conexion, $consulta);
-        $filas = mysqli_num_rows($resultado);
-        $filas++;
+        // $consulta = "SELECT * FROM Nota";
+        // $resultado = mysqli_query($conexion, $consulta);
+        // $filas = mysqli_num_rows($resultado);
+        // $filas++;
         $favorito = 0;
-        echo $filas;
-        echo $hoy_prueba;
-        echo $texto;
         //inserto nueva consulta
-        $sql .= "INSERT INTO Nota (Nota, Fecha, Usuario_idUsuario, Favorito)";
-        $sql .= "VALUES ('". $texto . "', ";
-        $sql .= "'". $hoy_prueba . "','". $_SESSION['user_id'] . "', '". $favorito . "');";
-        mysqli_query($conexion, $sql);
+        // $sql .= "INSERT INTO Nota (Nota, Fecha, Usuario_idUsuario, Favorito)";
+        // $sql .= "VALUES ('". $texto . "', ";
+        // $sql .= "'". $hoy_prueba . "','". $_SESSION['user_id'] . "', '". $favorito . "');";
+        // mysqli_query($conexion, $sql);
+
+
+        //pdo
+        $query3 = "INSERT INTO Nota(Nota, Fecha, Usuario_idUsuario, Favorito)values(:nota, :fecha, :Usuario_idUsuario, :favorito)";
+        $stm = $conn->prepare($query3);
+        $stm->bindParam(':nota', $texto, PDO::PARAM_STR);
+        $stm->bindParam(':fecha', $hoy_prueba);
+        $stm->bindParam(':Usuario_idUsuario', $_SESSION['user_id']);
+        $stm->bindParam(':favorito', $favorito);
+        //ejecutar la consulta:
+        $stm->execute();
         } catch (\Throwable $th) {
             echo $th;
             echo "error de la conexion";
@@ -107,6 +116,6 @@ if(!isset($_POST['quitar'])){
     }
 }
 }
-header('Location:index.php');
+//header('Location:index.php');
 
 ?>
