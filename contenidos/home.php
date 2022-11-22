@@ -46,6 +46,7 @@
                                     $stm->execute([':user'=>$id_usuario]);
                                 
                                     $user = $stm->fetchAll();
+
                                     $user_numero = $stm_numero->fetchAll();
                                     $count = count($user_numero);
 
@@ -66,6 +67,7 @@
                                                 $date = date_create($fecha);
                                                 $new_hoy = date_format($date, "F j, Y, g:i a");
                                                 echo "<tr class='tr'>";
+                                                echo "<td>$id</td>";
                                                 echo "<td class='td'><span class='date-span'> <input type='checkbox' name='dnis[]' value='$id' class='identificador'>$new_hoy</span>$nota</td>";
                                                 echo"</tr>"; 
                                          }  
@@ -112,35 +114,71 @@
                 <section class="diary__section__destacados">
                     <h2 class="h2 h2-size">Notas Destacadas:</h2>
                     <?php
-                        $registros_filas_dest = mysqli_num_rows($resultado_destacad);
-                        //en el inpuit hidden, guardo la variable anterior para lerla desde javascript
-                        echo "<input id='elemento_destacados' name='elemento' type='hidden' value='$registros_filas_dest'>";
-                        //si no hay ningun registro, imprimo una descripcion
-                        if(mysqli_num_rows($resultado_destacad)==0){
+                    if(isset($_SESSION['user_id'])){
+                        if($count==0){
                             echo "<div class='box-table'>";
-                            echo "<table id='tabla_dos' class='tabla'>";
-                            echo "<tr class='tr'>";
-                            echo "<td class='td'>Tus notas favoritas apareceran aqui...</td>";
-                            echo"</tr>";
-                            echo "</table>"; 
-                            echo "</div>";
+                             echo "<table id='tabla_dos' class='tabla'>";
+                             echo "<tr class='tr'>";
+                             echo "<td class='td'>Tus notas favoritas apareceran aqui...</td>";
+                             echo"</tr>";
+                             echo "</table>"; 
+                             echo "</div>";
                         }else{
+                            $favorito = 1;
                             echo "<div class='box-table'>";
-                        echo "<table class='tabla'>";
-                         while($fila=mysqli_fetch_row($resultado_destacad)){
-                            $id = $fila[0];
-                            $fecha = $fila[1];
-                            $nota = $fila[2];
-                            $date = date_create($fecha);
-                            $new_hoy = date_format($date, "F j, Y, g:i a");
-                               echo "<tr class='tr'>";
-                               echo "<td class='td'><span class='date-span'> <input class='identificador' type='checkbox' name='dnis[]' value='$id'>$new_hoy</span>$nota</td>";
+                            echo "<table class='tabla'>";
+                            //para consultas de tipo  select se usa bindvalue, para mas de 1 parametro posicional
+                            $consulta_destacados = "SELECT * FROM Nota WHERE Usuario_idUsuario = :user && Favorito = :favorito";
+                            $stm_destacados = $conn->prepare($consulta_destacados);
+                            $stm_destacados->bindValue(':user', $_SESSION['user_id']);
+                            $stm_destacados->bindValue(':favorito', $favorito);
+                            $stm_destacados->execute();
+                            $user_destacados = $stm_destacados->fetchAll();
+                              //luego lo recorro con el foreach:
+                             foreach($user_destacados as $r){
+                                $id = $r[0];
+                                $fecha = $r[2];
+                                $nota = $r[1];
+                                $date = date_create($fecha);
+                                $new_hoy = date_format($date, "F j, Y, g:i a");
+                                echo "<tr class='tr'>";
+                                echo "<td>$id</td>";
+                                echo "<td class='td'><span class='date-span'> <input class='identificador' type='checkbox' name='dnis[]' value='$id'>$new_hoy</span>$nota</td>";
                                 echo"</tr>";
-                        }
-                        echo "</table>"; 
-                        echo "</div>";
-                        }
-                        unset($_SESSION['item']);
+                             }
+                             echo "</table>"; 
+                             echo "</div>";
+                       }
+                    }
+                        // $registros_filas_dest = mysqli_num_rows($resultado_destacad);
+                        // //en el inpuit hidden, guardo la variable anterior para lerla desde javascript
+                        // echo "<input id='elemento_destacados' name='elemento' type='hidden' value='$registros_filas_dest'>";
+                        // //si no hay ningun registro, imprimo una descripcion
+                        // if(mysqli_num_rows($resultado_destacad)==0){
+                        //     echo "<div class='box-table'>";
+                        //     echo "<table id='tabla_dos' class='tabla'>";
+                        //     echo "<tr class='tr'>";
+                        //     echo "<td class='td'>Tus notas favoritas apareceran aqui...</td>";
+                        //     echo"</tr>";
+                        //     echo "</table>"; 
+                        //     echo "</div>";
+                        // }else{
+                        //     echo "<div class='box-table'>";
+                        // echo "<table class='tabla'>";
+                        //  while($fila=mysqli_fetch_row($resultado_destacad)){
+                        //     $id = $fila[0];
+                        //     $fecha = $fila[1];
+                        //     $nota = $fila[2];
+                        //     $date = date_create($fecha);
+                        //     $new_hoy = date_format($date, "F j, Y, g:i a");
+                        //        echo "<tr class='tr'>";
+                        //        echo "<td class='td'><span class='date-span'> <input class='identificador' type='checkbox' name='dnis[]' value='$id'>$new_hoy</span>$nota</td>";
+                        //         echo"</tr>";
+                        // }
+                        // echo "</table>"; 
+                        // echo "</div>";
+                        // }
+                        // unset($_SESSION['item']);
                     ?>
                     <button data-show-dest class="diary-bottons-agregar bottons-agregar-three quitar" name="quitar">Quitar Nota</button>
                 </section>

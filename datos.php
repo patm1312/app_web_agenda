@@ -85,25 +85,33 @@ if(isset($_POST['eliminar_todo'])){
     $sql_erase_todo = "DELETE FROM destacados;";
     mysqli_query($conexion, $sql_erase_todo);
 }
+//si le di en destacar
 if(!isset($_POST['destacar'])){
 }else{
     if(!empty($_POST['dnis'])){
+        $favorito = 1;
         //iteroi sobre los ids seleccionados
         foreach($_POST['dnis'] as $seleccion){
+            echo $seleccion;
+            $query_actualizar = "UPDATE nota set Favorito=? WHERE idNota=?";
+            $stm = $conn->prepare($query_actualizar);
+            $stm->bindParam(1, $favorito);
+            $stm->bindParam(2, $seleccion);
+            $stm->execute();
             //slecciono de la bd, los registros con eses id seleccionados
-            $consulta_destacados = "SELECT * FROM diario_tabla WHERE id='$seleccion'" ;
-            $resultado_destacados = mysqli_query($conexion, $consulta_destacados);
-            //desempaqueto la consulta
-            while($fila_dest=mysqli_fetch_row($resultado_destacados)){
-                //inserto nueva consulta con los datos de la consulta en la nueva tabla destacados
-                $sql_dest .= "INSERT INTO destacados ";
-                $sql_dest .= "VALUES ('". $fila_dest[0] . "', ";
-                $sql_dest .= "'". $fila_dest[1] . "','". $fila_dest[2] . "');";
-                echo "<br>";
-                echo "<br>";
-                mysqli_query($conexion, $sql_dest);
-            }
-            $sql_dest = "";
+            // $consulta_destacados = "SELECT * FROM diario_tabla WHERE id='$seleccion'" ;
+            // $resultado_destacados = mysqli_query($conexion, $consulta_destacados);
+            // //desempaqueto la consulta
+            // while($fila_dest=mysqli_fetch_row($resultado_destacados)){
+            //     //inserto nueva consulta con los datos de la consulta en la nueva tabla destacados
+            //     $sql_dest .= "INSERT INTO destacados ";
+            //     $sql_dest .= "VALUES ('". $fila_dest[0] . "', ";
+            //     $sql_dest .= "'". $fila_dest[1] . "','". $fila_dest[2] . "');";
+            //     echo "<br>";
+            //     echo "<br>";
+            //     mysqli_query($conexion, $sql_dest);
+            // }
+            // $sql_dest = "";
         }
     }
 }
@@ -116,6 +124,6 @@ if(!isset($_POST['quitar'])){
     }
 }
 }
-//header('Location:index.php');
+header('Location:index.php');
 
 ?>
