@@ -17,18 +17,21 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="estilo.css">
     
 </head>
 <body>
     <header class="header">
        <nav class="nav">  
-               <a class="nav_menu" href="index.php?seccion=home">Agenda</a>
+               <a class="nav__menu" href="index.php?seccion=home">Agenda</a>
                <li class="nav__menu nav__menu-color">Notas</li>
+            <div class="headerBox-user">
            <ul>
            <?php if(!isset($_SESSION['user_id'])){?>
-           <li><a href="index.php?seccion=login">Login</a></li>
-           <li><a href="index.php?seccion=signup">SignUp</a></li>
+
+            <a class="header_userInfo" href="index.php?seccion=login">Login</a>
+            <a class="header_userInfo" href="index.php?seccion=signup">SignUp</a>
+           </div>
            </ul>
            <?php
            }else{    
@@ -48,9 +51,10 @@
                 endif;
             }
            ?>
-
-           <a href="index.php?seccion=#"><?php echo $user; ?></a>
-           <a href="index.php?seccion=logout">LogOut</a>
+           <div class="boxName-user">
+           <a class="header_userInfo header_userInfo-boxName" href="index.php?seccion=#"><img class="img-user" src="assets/user.png" alt="usuario-icon"><?php echo $user; ?></a>
+           <a class="header_userInfo" href="index.php?seccion=logout">LogOut</a>
+           </div>
            <?php
        };
            ?>

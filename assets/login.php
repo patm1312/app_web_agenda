@@ -46,7 +46,9 @@
     endif;
 }
     }
+
 ?>
+
   <form class="form--login" action="" method="POST">
     <input class="input--login" name="email" type="text" placeholder="Enter your email">
     <input class="input--login" name="password" type="password" placeholder="Enter your Password">

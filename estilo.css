@@ -4,17 +4,44 @@
     font-size: 20px;
     margin: 0;
     box-sizing: border-box;
-    
-
+    text-decoration: none;
 }
 body{
     background-image: url(assets/notebook.jpg);
     background-size: 25%;
     
 }
+
 .header{
-    background-color: rgb(120, 201, 247)
+    background-color: rgb(221, 176, 124)
 }
+.headerBox-user{
+    display: flex;
+    justify-content: right;
+    padding-right: 15px;
+}
+.header_userInfo{
+    display: inline-block;
+    width: auto;
+    border-radius: 20px;
+    margin-bottom: 5px;
+    background-color: rgb(173, 64, 50);
+    text-align: center;
+    padding: 5px;
+    padding-right: 10px;
+    color: white;
+}
+.boxName-user{
+    display: flex;
+}
+.header_userInfo-boxName{
+    display: flex;
+    margin-right: 5px;
+}
+.header_userInfo:hover{
+    background-color: rgb(112, 42, 33);
+}
+
 .main{
     padding: 20px 0px;
     height: auto;
@@ -50,14 +77,14 @@ body{
     box-shadow: 5px 5px black;
 }
 .nav__menu{
-    background-color: rgb(162, 173, 10);
+    background-color: rgb(109, 200, 253);
 }
 .nav__menu:hover{
     background-color: gold;
 }
 .nav__menu-color{
     margin-left: 60px;
-    background-color: rgb(192, 65, 255)
+    background-color: rgb(255, 65, 65)
 }
 
 /* primer article de diario, notas */
@@ -262,3 +289,62 @@ body{
     left: 40%;
 }
 
+/* login */
+
+.box-login{
+    margin-top: 25px;
+    display: flex;
+    margin-right: auto;
+    margin-left: auto;
+    padding: 50px 10px;
+    width: 60%;
+    flex-direction: column;
+    
+    background-color: rgba(255, 255, 255, 0.562);
+}
+
+.img-form-login{
+    width: 80px;
+    height: 80px;
+}
+.box__form__login-img{
+    text-align: center;
+    margin-top: 15px;
+}
+
+.form--login{
+    display: inline-block;
+    text-align: center;
+}
+.h1-login{
+    display: inline;
+}
+.box_login-tittle{
+    margin-right: auto;
+    margin-left: auto;
+    padding: 20px;
+}
+/* .box_login-tittle--small{
+    padding: 0;
+} */
+.input--login{
+    border: none;
+    border-bottom: 1px solid black;
+    margin: 10px;
+    padding: 10px;
+    display: inline-block;
+    background: transparent;
+}
+.input--login-submit{
+    border-radius: 25px;
+    padding: 10px;
+    border: none;
+    display: block;
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: 35px;
+}
+.input--login-small{
+    padding: 4px;
+    margin: 10px;
+}

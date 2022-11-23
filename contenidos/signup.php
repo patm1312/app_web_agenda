@@ -42,14 +42,21 @@ if (!empty($_POST['email']) && !empty($_POST['password'])){
 }
 }
 ?>
-<h1>SignUp</h1>
-    <span>or <a href="index.php?seccion=login">Login</a></span>
-   <form action="" method="POST">
-      <input name="name" type="text" placeholder="Enter your name">
-      <input name="apellido" type="text" placeholder="Enter your subname">
-      <input name="email" type="text" placeholder="Enter your email">
-      <input name="password" type="password" placeholder="Enter your Password">
-      <input name="confirm_password" type="password" placeholder="Confirm Password">
-      <input type="submit" value="Submit">
+<div class="box-login box-login--position">
+<div class="box_login-tittle box_login-tittle--small">
+<h1 class="h1-login">SignUp</h1>
+<span>or <a href="index.php?seccion=login">Login</a></span>
+<div class="box__form__login-img box__form__login-img-position">
+<img class="img-form-login" src="assets/ping.png" alt="imagen de ping">
+</div>
+</div>
+   <form class="form--login" action="" method="POST">
+      <input class="input--login input--login-small" name="name" type="text" placeholder="Enter your name">
+      <input class="input--login input--login-small" name="apellido" type="text" placeholder="Enter your subname">
+      <input class="input--login input--login-small" name="email" type="text" placeholder="Enter your email">
+      <input class="input--login input--login-small" name="password" type="password" placeholder="Enter your Password">
+      <input class="input--login input--login-small" name="confirm_password" type="password" placeholder="Confirm Password">
+      <input class="input--login-submit" type="submit" value="Submit">
     </form>
+</div>
 </section>

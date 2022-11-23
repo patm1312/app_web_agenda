@@ -119,8 +119,15 @@ if(!isset($_POST['quitar'])){
 }else{
     if(!empty($_POST['dnis'])){
         foreach($_POST['dnis'] as $seleccion){
-            $sql_erase = "DELETE FROM destacados WHERE id = '$seleccion';";
-            mysqli_query($conexion, $sql_erase);
+            $favorito = 0;
+            // $sql_erase = "DELETE FROM destacados WHERE id = '$seleccion';";
+            // mysqli_query($conexion, $sql_erase);
+            echo $seleccion;
+            $query_actualizar = "UPDATE nota set Favorito=? WHERE idNota=?";
+            $stm = $conn->prepare($query_actualizar);
+            $stm->bindParam(1, $favorito);
+            $stm->bindParam(2, $seleccion);
+            $stm->execute();
     }
 }
 }
