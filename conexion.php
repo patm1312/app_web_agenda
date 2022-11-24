@@ -49,6 +49,12 @@ $consulta_destacados = "SELECT * FROM destacados";
 $resultado_destacad = mysqli_query($conexion,$consulta_destacados);
 
 // conexion pdo
+
+
+
+
+
+
 try {
   $conn = new PDO("mysql:host=$direccion_bd;dbname=$nombre_bd;", $nombre_user, $password_user);
 } catch (PDOException $e) {

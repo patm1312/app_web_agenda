@@ -14,7 +14,8 @@ $hoy_prueba = date("Y-m-d H:i:s");
 if(isset($_POST['items'])){
     //creo una sesion para alacenar la variable del numero de pagina
     $_SESSION['item'] = $_POST['items'];
-    header("Location: index.php?seccion=home");
+    //header("Location: index.php?seccion=home");
+    echo "<script>window.location='index.php?seccion=home'</script>";
 }else{
     echo "";
 }
@@ -55,7 +56,9 @@ if(isset($_POST['agregar'])){
             echo "error de la conexion";
         }
     }else{
-        header('Location:index.php?seccion=login&sesion=false');
+        
+            //header('Location:index.php?seccion=login&sesion=false',  true,  301 );  exit;
+            echo "<script>window.location='index.php?seccion=login&sesion=false'</script>";
     }
         }
         
@@ -64,26 +67,36 @@ if(!isset($_POST['eliminar'])){
 }else{
     if(!empty($_POST['dnis'])){
         foreach($_POST['dnis'] as $seleccion){
-            $sql_erase = "DELETE FROM diario_tabla WHERE id = '$seleccion';";
-            mysqli_query($conexion, $sql_erase);
-            //hago consulta a la tabla de destacados para eliminar
-            $consulta_dest = "SELECT * FROM destacados";
-            $resultado_dest = mysqli_query($conexion, $consulta_dest);
-            //numero de destacados
-            $filas_destacados = mysqli_num_rows($resultado_dest);
-            if(!empty(mysqli_num_rows($resultado))){
-                $sql_erase = "DELETE FROM destacados WHERE id = '$seleccion';";
-                mysqli_query($conexion, $sql_erase);
-            }else{
-            }
+            echo $seleccion;
+            $query6 = "DELETE FROM nota WHERE idNota=:id";
+            $stm = $conn->prepare($query6);
+            $stm->bindParam(':id', $seleccion);
+            $stm->execute();
+            // $sql_erase = "DELETE FROM diario_tabla WHERE id = '$seleccion';";
+            // mysqli_query($conexion, $sql_erase);
+            // //hago consulta a la tabla de destacados para eliminar
+            // $consulta_dest = "SELECT * FROM destacados";
+            // $resultado_dest = mysqli_query($conexion, $consulta_dest);
+            // //numero de destacados
+            // $filas_destacados = mysqli_num_rows($resultado_dest);
+            // if(!empty(mysqli_num_rows($resultado))){
+            //     $sql_erase = "DELETE FROM destacados WHERE id = '$seleccion';";
+            //     mysqli_query($conexion, $sql_erase);
+            // }else{
+            // }
         }
     }
 }
 if(isset($_POST['eliminar_todo'])){
-    $sql_erase_todo = "DELETE FROM diario_tabla;";
-    mysqli_query($conexion, $sql_erase_todo);
-    $sql_erase_todo = "DELETE FROM destacados;";
-    mysqli_query($conexion, $sql_erase_todo);
+    $query6 = "DELETE FROM nota WHERE Usuario_idUsuario=:id";
+            $stm = $conn->prepare($query6);
+            $stm->bindParam(':id', $_SESSION['user_id']);
+            $stm->execute();
+
+    // $sql_erase_todo = "DELETE FROM diario_tabla;";
+    // mysqli_query($conexion, $sql_erase_todo);
+    // $sql_erase_todo = "DELETE FROM destacados;";
+    // mysqli_query($conexion, $sql_erase_todo);
 }
 //si le di en destacar
 if(!isset($_POST['destacar'])){
@@ -131,6 +144,6 @@ if(!isset($_POST['quitar'])){
     }
 }
 }
-header('Location:index.php');
-
+//header('Location:index.php');
+echo "<script>window.location='index.php'</script>";
 ?>

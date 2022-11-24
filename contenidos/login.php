@@ -1,7 +1,8 @@
 <section>
 <?php
     if (isset($_SESSION['user_id'])) {
-        header('Location:index.php?seccion=home');
+        //header('Location:index.php?seccion=home');
+        echo "<script>window.location='index.php?seccion=home'</script>";
       }
       if (isset($_GET['sesion'])) {
         $message = "Por favor inicia sesion para agregar notas";
@@ -33,7 +34,8 @@
   if (count($results) > 0 && password_verify($_POST['password'], $results['password'])) {
     //almaceno el id del usuario de la consulta en la sesion.
     $_SESSION['user_id'] = $results['idUsuario'];
-    header("Location: index.php?seccion=home");
+    //header("Location: index.php?seccion=home");
+    echo "<script>window.location='index.php?seccion=home'</script>";
   } else {
     $message = 'Sorry, those credentials do not match';
     echo "<p> $message;</p>";
