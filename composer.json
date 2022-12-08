@@ -1,0 +1,17 @@
+{
+    "name": "patm1312/appnotas",
+    "description": "app de notas",
+    "type": "project",
+    "autoload": {
+        "psr-4": {
+            "Patm1312\\Appnotas\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "patm1312"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {}
+}
